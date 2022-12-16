@@ -19,6 +19,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.provaconcess.R
 import com.example.provaconcess.navigation.Screen
 
+
 @Composable
 fun SettingsScreen(
     navController: NavController,
@@ -30,7 +31,7 @@ fun SettingsScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text(text = "seto",
+        Text(text = "stats",
             style = MaterialTheme.typography.body1
         )
     }

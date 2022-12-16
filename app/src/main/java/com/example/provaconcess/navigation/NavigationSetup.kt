@@ -8,7 +8,7 @@ import com.example.provaconcess.screens.HomeScreen
 import com.example.provaconcess.screens.SettingsScreen
 
 @Composable
-fun NavigationSetup(navController: NavHostController) {
+fun NavigationSetup(navController: NavHostController, formFields: Unit) {
     NavHost(navController, startDestination = BottomNavItem.Home.route) {
         composable(BottomNavItem.Home.route) {
             HomeScreen()

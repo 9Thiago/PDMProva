@@ -17,7 +17,7 @@ fun HomeScreen() {
         contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxSize()
     ) {
-        Text(text = "Home")
+        Text(text = "HomeScreen")
     }
 }
 

@@ -4,33 +4,33 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
+import androidx.compose.ui.unit.toSize
 import androidx.navigation.compose.rememberNavController
 import com.example.provaconcess.navigation.BottomNavigationBar
 import com.example.provaconcess.navigation.NavigationSetup
-import com.example.provaconcess.ui.theme.ProvaConcessTheme
-import java.net.ContentHandler
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MainContent();
+
         }
     }
 
@@ -40,14 +40,6 @@ class MainActivity : ComponentActivity() {
         Scaffold(
             topBar = {
                 TopAppBar(
-//                    navigationIcon = {
-//                        IconButton(onClick = { showNextPage() }) {
-//                            Icon(
-//                                imageVector = Icons.Filled.ArrowForward,
-//                                contentDescription = "Next",
-//                            )
-//                        }
-//                    },
                     title = {
                         Box(
                             Modifier.fillMaxSize(),
@@ -60,15 +52,66 @@ class MainActivity : ComponentActivity() {
                     },
                     backgroundColor = Color.Yellow,
 
-                )
+                    )
             },
             bottomBar = { BottomNavigationBar(navController) }
-        ) {NavigationSetup(navController = navController)}
+        ) { NavigationSetup(navController = navController, FormFields()) }
     }
 
-    private @Composable
+    @Composable
     fun FormFields() {
-        TODO("Not yet implemented")
+        val carModelState = remember { mutableStateOf("") }
+        var vExpanded by remember { mutableStateOf(false) }
+        var carType by remember { mutableStateOf("") }
+        var carPrice by remember { mutableStateOf("") }
+        val cTypes = listOf("Hatch", "Truck", "MotorBike", "Sedan", "PickUp", "Van", "SUV")
+
+        val icon = if (vExpanded) Icons.Filled.KeyboardArrowUp
+        else Icons.Filled.KeyboardArrowDown
+
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.fillMaxSize()
+            //.background(color = Color.LightGray)
+        )
+        {
+            OutlinedTextField(value = carModelState.value,
+                onValueChange = { carModelState.value = it },
+                label = { Text(text = stringResource(id = R.string.model_hint)) }
+            )
+            Box() {
+                OutlinedTextField(
+                    value = carType,
+                    onValueChange = { carType = it },
+                    readOnly = true,
+                    label = { Text("Type") },
+                    trailingIcon = {
+                        Icon(icon, "contentDescription",
+                            Modifier.clickable { vExpanded = !vExpanded })
+                    }
+                )
+                DropdownMenu(
+                    expanded = vExpanded,
+                    onDismissRequest = { vExpanded = false },
+                ) {
+                    cTypes.forEach { label ->
+                        DropdownMenuItem(onClick = {
+                            carType = label
+                            vExpanded = false
+                        }) {
+                            Text(text = label)
+                        }
+                    }
+                }
+            }
+
+
+
+            Button(onClick = { /*TODO*/ }) {
+                Text(text = stringResource(id = R.string.submit_btn))
+            }
+        }
+
     }
 
     @Composable
@@ -81,8 +124,6 @@ class MainActivity : ComponentActivity() {
     private fun showNextPage() {
         startActivity(Intent(this, StatsActv::class.java))
     }
-
-
 
 
     @Preview(showBackground = true)
