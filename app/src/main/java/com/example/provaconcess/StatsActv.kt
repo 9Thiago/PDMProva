@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 
 class StatsActv : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +20,7 @@ class StatsActv : ComponentActivity() {
         setContent { StatsContent() }
     }
 
+    @Preview(showBackground = true)
     @Composable
     fun StatsContent() {
         Box(
@@ -26,7 +28,7 @@ class StatsActv : ComponentActivity() {
             contentAlignment = Alignment.Center
         ) {
             Text(
-                "Statisticas e Grafico Pizza"
+                "Estatisticas e Grafico Pizza"
             )
         }
     }
