@@ -1,9 +1,8 @@
 <resources>
     <string name="app_name">ProvaConcess</string>
-    <string name="screen_title_home">Home</string>
-    <string name="screen_title_settings">Stats</string>
+    <string name="screen_title_home">HOME</string>
+    <string name="screen_title_settings">STATS</string>
     <string name="name_hint">Nome</string>
-    <string name="email_hint">Email</string>
     <string name="model_hint">Model</string>
     <string name="type_select">Choose a Type</string>
     <string name="submit_btn">Submit</string>

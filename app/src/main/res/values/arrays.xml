@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="types">
+        <item>Hatch</item>
+        <item>Truck</item>
+        <item>Motorbike</item>
+        <item>Sedan</item>
+        <item>Pickup truck</item>
+        <item>Van</item>
+        <item>SUV</item>
+    </string-array>
+</resources>

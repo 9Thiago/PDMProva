@@ -6,8 +6,7 @@ import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -31,7 +30,7 @@ sealed class BottomNavItem(
     object Settings : BottomNavItem(
         route = Screen.Settings.route,
         titleResId = R.string.screen_title_settings,
-        icon = Icons.Default.Settings
+        icon = Icons.Default.DateRange
     )
 }
 
@@ -59,17 +58,13 @@ fun BottomNavigationBar(
                 selected = currentRoute == item.route,
                 onClick = {
                     navController.navigate(item.route) {
-                        // Pop up to the start destination of the graph to
-                        // avoid building up a large stack of destinations
-                        // on the back stack as users select items
+
                         navController.graph.startDestinationRoute?.let { route ->
                             popUpTo(route) {
                                 saveState = true
                             }
                         }
-                        // Avoid multiple copies of the same destination when re-selecting the same item
                         launchSingleTop = true
-                        // Restore state when re-selecting a previously selected item
                         restoreState = true
                     }
                 }

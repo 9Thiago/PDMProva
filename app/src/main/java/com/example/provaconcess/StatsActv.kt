@@ -28,7 +28,7 @@ class StatsActv : ComponentActivity() {
             contentAlignment = Alignment.Center
         ) {
             Text(
-                "Estatisticas e Grafico Pizza"
+                "p teste"
             )
         }
     }
